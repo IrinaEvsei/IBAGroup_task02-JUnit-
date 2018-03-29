@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import totalizator.Bet;
 import totalizator.Client;
 
-import static org.junit.Assert.assertEquals;
 
 @RunWith(Theories.class)
 public class BetUnitTest {
@@ -32,5 +31,38 @@ public class BetUnitTest {
     public void createBetNegative() throws SumException {
         new Bet(client, 5, "team");
 
+    }
+
+    @Test(expected = SumException.class)
+    public void checkSumIsNull() throws SumException {
+        bet = new Bet(client, 0, "team1");
+    }
+    @Test(expected = Exception.class)
+    public void checkKfsIsNull() {
+        bet.setKfc(0);
+    }
+    @Test
+    public void checkMaxKfs() {
+        bet.setKfc(100);
+        Assert.assertTrue(100 == bet.getKf());
+    }
+
+
+    @Test
+    public void checkMinKfs() {
+        double k = 100 / 120;
+        bet.setKfc(k);
+        Assert.assertTrue(k == bet.getKf());
+    }
+
+    @Test(expected = Exception.class)
+    public void checkKfsMoreThanMax() {
+        bet.setKfc(1000);
+        Assert.assertTrue(1000 == bet.getKf());
+    }
+
+    @Test(expected = Exception.class)
+    public void checkNegativeKfs() {
+        bet.setKfc(-1);
     }
 }
