@@ -1,13 +1,11 @@
 package totalizator;
 
-import exeption.BillException;
-import exeption.MarginException;
-import exeption.NameException;
+import exeption.*;
 
 public class Run {
     
         
-    public static void main(String args[]) throws BillException, NameException, MarginException {
+    public static void main(String args[]) throws BillException, NameException, MarginException, SumException, ProbException {
 
         Client client1 = new Client("Ann", 20);
         Client client2 = new Client("Tom", 40);

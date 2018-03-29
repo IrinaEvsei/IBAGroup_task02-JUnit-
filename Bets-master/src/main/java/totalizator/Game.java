@@ -22,8 +22,7 @@ public class Game {
             this.margin = margin;
     }
 
-    public void addMember(Member participant) {
-        try {
+    public void addMember(Member participant) throws NameException {
             if (this.members.isEmpty()) {
                 this.members.add(participant);
             } else {
@@ -34,12 +33,9 @@ public class Game {
                 }
                 this.members.add(participant);
             }
-        } catch (NameException e) {
-            System.out.println(e.toString());
-        }
     }
 
-    public void addBet(Bet bet) {
+    public void addBet(Bet bet) throws ProbException {
         double totalProb = 0;
         for (Member m : this.members) {
             if (bet.getTeamName().equals(m.getName())) {
@@ -47,7 +43,6 @@ public class Game {
             }
         }
 
-        try {
             for (Member m : this.members) {
                 totalProb = totalProb + m.getProb();
             }
@@ -56,9 +51,6 @@ public class Game {
             }
         bet.getClient().setBill((int) (bet.getClient().getBill() - bet.getSum()));
         this.bets.add(bet);
-        } catch (ProbException e) {
-            System.out.println(e.toString());
-        }
     }
 
     public void setMargin(double margin) {

@@ -41,6 +41,7 @@ public class BetUnitTest {
     public void checkKfsIsNull() {
         bet.setKfc(0);
     }
+
     @Test
     public void checkMaxKfs() {
         bet.setKfc(100);
